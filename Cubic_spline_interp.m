@@ -118,7 +118,6 @@ function [y,m,G] = cubic_spline(xi,yi,x)
     k = 4*(n-1);
 
     flag=3;
-    slope=10;
 
     % case 1 -> (double derivates = 0) at ends points
     % this assumption is good for Natural Cubic Spline
