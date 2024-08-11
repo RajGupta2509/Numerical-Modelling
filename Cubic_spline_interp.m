@@ -119,7 +119,7 @@ function [y,m,G] = cubic_spline(xi,yi,x)
 
     flag=3;
 
-    % case 1 -> (double derivates = 0) at ends points
+    % case 1 -> (double derivatives = 0) at both ends points
     % this assumption is good for Natural Cubic Spline
 
     if (flag==1)
