@@ -39,7 +39,7 @@ m = genInvG*d;
 
 % Forward Modelling
 
-n = 100;
+n = 1000;
 % X contains depth values
 X = linspace(minZ,maxZ,n);
 X_matrix = [X;ones(1,n)];
