@@ -1,10 +1,14 @@
 close all
 clc;
+data = csvread("allData\seismic_data.csv");
 
-amplitudes = csvread("allData\seismic_data.csv");
+% since the dataset is very large thats why we are doing sampling
+smapling_interval = 10;
+amplitudes = get_sampled_data(data,smapling_interval);
 L=length(amplitudes);
-t = 0.01*(0:L-1);
-N=10;
+t = 0.1*smapling_interval*(0:L-1);
+% try for N = [100, 200, 500, 1000]
+N = 100;
 
 
 % plot
@@ -30,8 +34,9 @@ ft_ii = zeros(1,length(t)) + a0; % Initialize
 for ii = 1:N
     fourier_coeff = (an(ii)*cos(((2*pi*ii)/L)*t) + bn(ii)*sin(((2*pi*ii)/L)*t));
     ft_ii = ft_ii + fourier_coeff;
-    plot(t,ft_ii,'LineWidth',2,'DisplayName',['N = ',num2str(ii)]) % Uncomment this line to see ALL of them
+    % plot(t,ft_ii,'LineWidth',2,'DisplayName',['N = ',num2str(ii)]) % Uncomment this line to see ALL of them
 end
+plot(t,ft_ii,'m','LineWidth',2,'DisplayName',['N = ',num2str(N)])
 legend show
 
 
@@ -44,3 +49,15 @@ function area = calc_bounded_area(x,fx)
         area = area + (height*width);
     end
 end
+
+
+function sampled_data = get_sampled_data(data,si)
+    n=length(data);
+    sampled_data=[];
+    j=1;
+    for i=1:si:n
+        sampled_data(j)=data(i);
+        j=j+1;
+    end
+end
+
