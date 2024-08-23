@@ -4,7 +4,7 @@ clc;
 amplitudes = csvread("allData\seismic_data.csv");
 L=length(amplitudes);
 t = 0.01*(0:L-1);
-N=2;
+N=10;
 
 
 % plot
@@ -44,39 +44,3 @@ function area = calc_bounded_area(x,fx)
         area = area + (height*width);
     end
 end
-
-
-
-
-
-
-
-
-
-
-% ft = @(t) amplitudes;
-
-% % plot
-% figure;
-% plot(x,fx(x),'k','LineWidth',3,'DisplayName','f(x)'); grid on
-% xlabel('x')
-% ylabel('f(x)')
-% hold on;
-
-% % Compute coefficients (See Lecture Notes)
-% a0 = (0.5/pi)*integral(fx,-pi,pi);
-
-% for ii = 1:N
-%     fx1 = @(x) fx(x).*cos(ii*x);
-%     fx2 = @(x) fx(x).*sin(ii*x);
-%     an(ii) = (1/pi)*integral(fx1,-pi,pi);
-%     bn(ii) = (1/pi)*integral(fx2,-pi,pi);
-% end
-
-% fx_ii = zeros(1,length(x)) + a0; % Initialize
-% for ii = 1:N
-%     fourier_coeff = (an(ii)*cos(ii*x) + bn(ii)*sin(ii*x));
-%     fx_ii = fx_ii + fourier_coeff;
-%     plot(x,fx_ii,'LineWidth',2,'DisplayName',['N = ',num2str(ii)]) % Uncomment this line to see ALL of them
-% end
-% legend show
